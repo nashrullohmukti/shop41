@@ -1,2 +1,5 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+.jumbotron
+    .container
+      h1 Welcome!
+      p Register to get started.
+      p = link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg'

@@ -22,13 +22,25 @@ html lang="en"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand href="#" Shop41
+          = link_to "Shop41", root_path, class: "navbar-brand"
         .navbar-collapse.collapse.navbar-responsive-collapse
           ul.nav.navbar-nav
-            li.active= link_to "Link 1", "#"
+            li= link_to "Products", products_path
             li= link_to "Link 2", "#"
             li= link_to "Link 3", "#"
-
+          ul.nav.navbar-nav.pull-right
+            - if user_signed_in?
+              li.dropdown
+                a.dropdown-toggle data-toggle="dropdown" href="#"
+                  = current_user.name
+                  span.caret
+                ul.dropdown-menu role="menu"
+                  li= link_to 'Profile', edit_user_registration_path
+                  li= link_to 'Log out', destroy_user_session_path, method: :delete
+            - else
+              li= link_to 'Log In', new_user_session_path
+              li= link_to 'Sign Up', new_user_registration_path
+    
     .container
       .row
         .col-md-9
@@ -36,10 +48,10 @@ html lang="en"
           = yield
         .col-md-3
           .well.sidebar-nav
-            h3 Sidebar
+            h3 Shop41
             ul.nav.nav-list
-              li.nav-header Sidebar
-              li= link_to "Link 1", "#"
+              li.nav-header Menu
+              li= link_to "Products", products_path
               li= link_to "Link 2", "#"
               li= link_to "Link 3", "#"
 
