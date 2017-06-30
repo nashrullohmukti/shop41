@@ -11,4 +11,5 @@ h2
   
   .form-actions
     = f.button :submit, "Sign up"
+= session["devise.facebook_data"]
 = render "devise/shared/links"

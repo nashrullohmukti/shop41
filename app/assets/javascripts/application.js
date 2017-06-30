@@ -15,6 +15,6 @@
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery-ui/effects/effect-blind
 //= require turbolinks
 //= require_tree .

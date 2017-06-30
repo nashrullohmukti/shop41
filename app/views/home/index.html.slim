@@ -1,5 +1,12 @@
-.jumbotron
-    .container
-      h1 Welcome!
-      p Register to get started.
-      p = link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg'
+.container
+  h1 Your Catalog
+  - cache @products do
+    - @products.each do |product|
+      - cache product do
+        .entry
+          = image_tag(product.picture.thumb)
+          h3 = product.name
+          = sanitize(product.description)
+          .price_line
+            span.price = product.price
+            = button_to 'Add to Cart', line_items_path(product_id: product), remote: true
