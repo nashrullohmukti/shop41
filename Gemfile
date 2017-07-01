@@ -35,6 +35,7 @@ gem 'rack-mini-profiler'
 gem 'devise'
 gem 'letter_opener'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'webpacker'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
