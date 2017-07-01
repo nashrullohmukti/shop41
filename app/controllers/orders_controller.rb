@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
   include CurrentCart
+
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: :new
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /orders
   # GET /orders.json
   def index
@@ -30,17 +31,17 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
 
-    respond_to do |format|
+    # respond_to do |format|
       if @order.save
+        redirect_to @order.paypal_url(@cart,@order,orders_path(@order))
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to @order, notice: 'Thank you for your order.' }
-        format.json { render :show, status: :created, location: @order }
+        # format.html { redirect_to @order, notice: 'Thank you for your order.' }
+        # format.json { render :show, status: :created, location: @order }
       else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        render :new
+        # format.json { render json: @order.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /orders/1
