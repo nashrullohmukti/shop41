@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
   mount_uploader :picture, PictureUploader
-
+  crop_uploaded :picture
   private
     def ensure_not_referenced_by_any_line_item
       unless line_items.empty?

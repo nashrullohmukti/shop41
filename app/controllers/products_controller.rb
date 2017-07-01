@@ -29,7 +29,13 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html {
+          if params[:product][:picture].present?
+            render :crop  ## Render the view for cropping
+          else
+            redirect_to @product, notice: 'Product was successfully created.'
+          end
+        }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -70,7 +76,7 @@ class ProductsController < ApplicationController
       end
     end
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

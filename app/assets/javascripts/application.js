@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.jcrop
 //= require cocoon
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
