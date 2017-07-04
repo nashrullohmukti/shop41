@@ -4,8 +4,13 @@ class PictureUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  if Rails.env.production?
+    include Cloudinary::CarrierWave
+  else
+    storage :file
+    # include Cloudinary::CarrierWave
+  end
   # Choose what kind of storage to use for this uploader:
-  storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -35,7 +40,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process crop: :picture
+    # process crop: :picture
     process resize_to_fit: [100, 100]
   end
 
