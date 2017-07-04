@@ -102,6 +102,18 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
+    elasticsearch (5.0.4)
+      elasticsearch-api (= 5.0.4)
+      elasticsearch-transport (= 5.0.4)
+    elasticsearch-api (5.0.4)
+      multi_json
+    elasticsearch-model (5.0.1)
+      activesupport (> 3)
+      elasticsearch (~> 5)
+      hashie
+    elasticsearch-transport (5.0.4)
+      faraday
+      multi_json
     erubi (1.6.1)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -313,6 +325,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.2)
   devise
+  elasticsearch-model
   friendly_id
   impressionist
   jbuilder (~> 2.5)

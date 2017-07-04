@@ -9,8 +9,8 @@ html lang="en"
 
     /! Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
-      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
-      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"
+      / = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+      / = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
 
@@ -33,16 +33,28 @@ html lang="en"
               li.dropdown
                 a.dropdown-toggle data-toggle="dropdown" href="#"
                   = current_user.name
-                  span.caret
+                  span.caret  
                 ul.dropdown-menu role="menu"
                   li= link_to 'Profile', edit_user_registration_path
                   li= link_to 'Log out', destroy_user_session_path, method: :delete
-
+              a.btn.btn-default.btn-sm  style="margin-top:10px;" onclick="openNav()"
+                span.glyphicon.glyphicon-shopping-cart
+                |  Your Cart 
+                span.badge  42
+                  
             - else
               li= link_to 'Log In', new_user_session_path
               li= link_to 'Sign Up', new_user_registration_path
+              a.btn.btn-default.btn-sm  style="margin-top:10px;" onclick="openNav()"
+                span.glyphicon.glyphicon-shopping-cart
+                |  Your Cart 
+                span.badge  42
+              
 
-    
+    - if @cart
+      = hidden_div_if(@cart.line_items.empty?, id: 'cart') do
+        = render @cart
+
     .container
       .row
         .col-md-9
@@ -56,9 +68,6 @@ html lang="en"
               li= link_to "Products", products_path
               li= link_to "Link 2", "#"
               li= link_to "Link 3", "#"
-          .well.sidebar-nav
-            - if @cart
-              = hidden_div_if(@cart.line_items.empty?, id: 'cart') do
-                = render @cart
+
       footer
         p &copy; Company 2017

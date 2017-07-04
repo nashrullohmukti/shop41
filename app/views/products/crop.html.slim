@@ -1,4 +1,4 @@
 = form_for @product do |f|
-  = f.cropbox :picture
-  = f.previewbox :picture
-  = f.submit 'Crop'
+  = f.cropbox :picture, width: 550, height: 600
+  = f.previewbox :picture, width: 200, height: 200
+  = f.submit 'Crop Image'

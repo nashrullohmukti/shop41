@@ -1,11 +1,13 @@
 - unless cart.line_items.empty?
-  h2 Your Cart
-  table.table.table-hover
-    tbody
-      = render(cart.line_items)
-      tr.total_line
-        td colspan="2" Total
-        td.total_cell = number_to_currency(cart.total_price)
-      tr
-        td colspan="2"= button_to 'Checkout', new_order_path, method: :get
-        td = button_to 'Empty Cart', cart, method: :delete, data: { confirm: 'Are You Sure?' }
+  #mySidenav.sidenav style="color:#fff;"
+    a.closebtn href="javascript:void(0)" onclick="closeNav()" ×
+    h2 Your Cart
+    table.table.table-responsive
+      tbody
+        = render(cart.line_items)
+        tr.total_line
+          td colspan="2" Total
+          td.total_cell = number_to_currency(cart.total_price)
+        tr
+          td colspan="2"= button_to 'Checkout', new_order_path, method: :get
+          td = button_to 'Empty Cart', cart, method: :delete, data: { confirm: 'Are You Sure?' }

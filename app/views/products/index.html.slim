@@ -18,7 +18,7 @@ table.table.table-striped
         td= product.id
         td= product.name
         td= product.price
-        td= product.description
+        td = product.description[0..150] + " ..."
         td= product.picture
         td= product.slug
         td=l product.created_at, format: :long
