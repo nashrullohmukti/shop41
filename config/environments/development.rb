@@ -7,8 +7,12 @@ Rails.application.configure do
   config.cache_classes = false
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :letter_opener
-  
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+      api_key: ENV['MAILGUN_API_KEY'],
+      domain: ENV['MAILGUN_DOMAIN'],
+    }
+
   # Do not eager load code on boot.
   config.eager_load = false
 

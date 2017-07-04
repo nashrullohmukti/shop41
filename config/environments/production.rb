@@ -3,16 +3,12 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-  config.action_mailer.delivery_method = :smtp
-
-  ActionMailer::Base.smtp_settings = {
-      :port           => 587,
-      :address        => 'smtp.mailgun.com',
-      :domain         => ENV['MAILGUN_DOMAIN'],
-      :user_name      => ENV['MAILGUN_USERNAME'],
-      :password       => ENV['MAILGUN_PASSWORD'],
-      :authentication => :plain,
-  }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+      api_key: ENV['MAILGUN_API_KEY'],
+      domain: ENV['MAILGUN_DOMAIN'],
+    }
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
