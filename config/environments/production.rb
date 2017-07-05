@@ -3,6 +3,7 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
+  config.action_mailer.default_url_options = { host: 'https://shop41.herokuapp.com'}
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
