@@ -30,6 +30,14 @@ html lang="en"
             li= link_to "Products", products_path
             li= link_to "Link 2", "#"
             li= link_to "Link 3", "#"
+            / form.navbar-form.navbar-left method="POST" action="searchkick"
+            /   .form-group
+            /     input type="text" class="form-control" name="searchk" id="searchk" placeholder="Search Product"
+            /   button type="submit" class="btn btn-default" Search
+            = form_for :term, url: searchkick_path, method: :get, :class => "navbar-form navbar-left" , wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+              = text_field_tag :term ,  params[:term],  placeholder: "Search Product ", :class => "form-control"
+              = submit_tag :search, input_html: { value: "Search"}, :class => "btn btn-default"
+        
           ul.nav.navbar-nav.pull-right
             - if user_signed_in?
               li.dropdown
